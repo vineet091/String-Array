@@ -357,54 +357,64 @@ import "./styles.css";
 //   count++;
 // }
 
-// var arr = [
-//   [1, 2, 3, 4, 5, 21],
-//   [6, 7, 8, 9, 10, 22],
-//   [11, 12, 13, 14, 15, 23],
-//   [16, 17, 18, 19, 20, 24]
-// ];
+var arr = [
+  [1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10],
+  [11, 12, 13, 14, 15],
+  [16, 17, 18, 19, 20]
+];
 
-// var start_col = 0;
-// var start_row = 0;
-// var end_col = 6;
-// var end_row = 4;
+/* SAMPLE OUTPUT
+[1, 6, 11, 16, 17, 18, 19, 20, 15, 10, 5, 4, 3, 2, 7, 12, 13, 14, 9, 8]
+*/
+var minr = 0,
+  minc = 0,
+  maxr = arr.length,
+  maxc = arr[0].length,
+  n = maxr * maxc,
+  counter = 0,
+  result = [];
 
-// while (start_row < end_row && start_col < end_col) {
-//   for (var i = start_col; i <= end_col - 1; i++) {
-//     console.log(arr[start_row][i]);
-//   }
-//   start_row = start_row + 1;
+while (counter < n) {
+  //left wall
+  for (let i = minr, j = minc; i < maxr && counter < n; i++) {
+    result.push(arr[i][j]);
+    counter++;
+  }
+  minc = minc + 1;
+  //bottom wall
+  for (let i = maxr - 1, j = minc; j < maxc && counter < n; j++) {
+    result.push(arr[i][j]);
+    counter++;
+  }
+  maxr = maxr - 1;
+  //right wall
+  for (let i = maxr - 1, j = maxc - 1; i >= minr && counter < n; i--) {
+    result.push(arr[i][j]);
+    counter++;
+  }
+  maxc = maxc - 1;
+  //top wall
+  for (let i = minr, j = maxc - 1; j >= minc && counter < n; j--) {
+    result.push(arr[i][j]);
+    counter++;
+  }
+  minr = minr + 1;
+}
 
-//   for (var j = start_row; j <= end_row - 1; j++) {
-//     console.log(arr[i][end_col - 1]);
-//   }
-//   end_col = end_col - 1;
-
-//   if (start_row < end_row) {
-//     for (var k = end_col - 1; k <= start_col; k++)
-//       console.log(arr[end_row - 1][i]);
-//     end_row = end_row - 1;
-//   }
-
-//   if (start_col < end_col) {
-//     for (var l = end_row - 1; l <= start_row; l++) {
-//       console.log(arr[i][start_col]);
-//     }
-//     start_col = start_col + 1;
-//   }
-// }
+console.log(result);
 
 // Find 2nd smallest number
 
-var arr = [5, 5, 76, 3, 4, 2198];
-var smallest = Math.min(arr[0], arr[1]);
-var smallest2 = Math.max(arr[0], arr[1]);
-for (var i = 2; i < arr.length; i++) {
-  if (arr[i] < smallest && arr[i] < smallest2) {
-    smallest2 = smallest;
-    smallest = arr[i];
-  } else if (arr[i] < smallest2) {
-    smallest2 = arr[i];
-  }
-}
-console.log(smallest2);
+// var arr = [5, 5, 76, 3, 4, 2198];
+// var smallest = Math.min(arr[0], arr[1]);
+// var smallest2 = Math.max(arr[0], arr[1]);
+// for (var i = 2; i < arr.length; i++) {
+//   if (arr[i] < smallest && arr[i] < smallest2) {
+//     smallest2 = smallest;
+//     smallest = arr[i];
+//   } else if (arr[i] < smallest2) {
+//     smallest2 = arr[i];
+//   }
+// }
+// console.log(smallest2);
