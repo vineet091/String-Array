@@ -256,7 +256,6 @@ import "./styles.css";
 // var direction = 1;
 // while (loop && count < 30) {
 //   result.push(arr[i][j]);
-//   console.log(arr[i][j], iMin, iMax, jMin, jMax, direction);
 //   if (direction === 1 && i === iMax && j === jMin && jMax > jMin) {
 //     jMin = jMin + 1;
 //     direction = 2;
@@ -292,8 +291,8 @@ import "./styles.css";
 //   }
 //   count++;
 // }
-// console.log(result.join(" "));
-
+// console.log(result);
+// console.log(performance.now());
 // Traverse a 2d array
 // var arr = [
 //   [1, 2, 3, 4, 5],
@@ -358,10 +357,10 @@ import "./styles.css";
 // }
 
 var arr = [
-  [1, 2, 3, 4, 5],
-  [6, 7, 8, 9, 10],
-  [11, 12, 13, 14, 15],
-  [16, 17, 18, 19, 20]
+  [1, 2, 3, 4, 5, 21],
+  [6, 7, 8, 9, 10, 22],
+  [11, 12, 13, 14, 15, 23],
+  [16, 17, 18, 19, 20, 24]
 ];
 
 /* SAMPLE OUTPUT
@@ -377,32 +376,33 @@ var minr = 0,
 
 while (counter < n) {
   //left wall
-  for (let i = minr, j = minc; i < maxr && counter < n; i++) {
-    result.push(arr[i][j]);
+  for (let i = minr; i < maxr; i++) {
+    result.push(arr[i][minc]);
     counter++;
   }
   minc = minc + 1;
   //bottom wall
-  for (let i = maxr - 1, j = minc; j < maxc && counter < n; j++) {
-    result.push(arr[i][j]);
+  for (let j = minc; j < maxc; j++) {
+    result.push(arr[maxr - 1][j]);
     counter++;
   }
   maxr = maxr - 1;
   //right wall
-  for (let i = maxr - 1, j = maxc - 1; i >= minr && counter < n; i--) {
-    result.push(arr[i][j]);
+  for (let i = maxr - 1; i >= minr; i--) {
+    result.push(arr[i][maxc - 1]);
     counter++;
   }
   maxc = maxc - 1;
   //top wall
-  for (let i = minr, j = maxc - 1; j >= minc && counter < n; j--) {
-    result.push(arr[i][j]);
+  for (let j = maxc - 1; j >= minc; j--) {
+    result.push(arr[minr][j]);
     counter++;
   }
   minr = minr + 1;
 }
 
-console.log(result);
+console.log(result.join(" "));
+console.log(performance.now());
 
 // Find 2nd smallest number
 
