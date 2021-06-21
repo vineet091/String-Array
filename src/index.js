@@ -356,53 +356,53 @@ import "./styles.css";
 //   count++;
 // }
 
-var arr = [
-  [1, 2, 3, 4, 5, 21],
-  [6, 7, 8, 9, 10, 22],
-  [11, 12, 13, 14, 15, 23],
-  [16, 17, 18, 19, 20, 24]
-];
+// var arr = [
+//   [1, 2, 3, 4, 5, 21],
+//   [6, 7, 8, 9, 10, 22],
+//   [11, 12, 13, 14, 15, 23],
+//   [16, 17, 18, 19, 20, 24]
+// ];
 
-/* SAMPLE OUTPUT
-[1, 6, 11, 16, 17, 18, 19, 20, 15, 10, 5, 4, 3, 2, 7, 12, 13, 14, 9, 8]
-*/
-var minr = 0,
-  minc = 0,
-  maxr = arr.length,
-  maxc = arr[0].length,
-  n = maxr * maxc,
-  counter = 0,
-  result = [];
+// /* SAMPLE OUTPUT
+// [1, 6, 11, 16, 17, 18, 19, 20, 15, 10, 5, 4, 3, 2, 7, 12, 13, 14, 9, 8]
+// */
+// var minr = 0,
+//   minc = 0,
+//   maxr = arr.length,
+//   maxc = arr[0].length,
+//   n = maxr * maxc,
+//   counter = 0,
+//   result = [];
 
-while (counter < n) {
-  //left wall
-  for (let i = minr; i < maxr; i++) {
-    result.push(arr[i][minc]);
-    counter++;
-  }
-  minc = minc + 1;
-  //bottom wall
-  for (let j = minc; j < maxc; j++) {
-    result.push(arr[maxr - 1][j]);
-    counter++;
-  }
-  maxr = maxr - 1;
-  //right wall
-  for (let i = maxr - 1; i >= minr; i--) {
-    result.push(arr[i][maxc - 1]);
-    counter++;
-  }
-  maxc = maxc - 1;
-  //top wall
-  for (let j = maxc - 1; j >= minc; j--) {
-    result.push(arr[minr][j]);
-    counter++;
-  }
-  minr = minr + 1;
-}
+// while (counter < n) {
+//   //left wall
+//   for (let i = minr; i < maxr; i++) {
+//     result.push(arr[i][minc]);
+//     counter++;
+//   }
+//   minc = minc + 1;
+//   //bottom wall
+//   for (let j = minc; j < maxc; j++) {
+//     result.push(arr[maxr - 1][j]);
+//     counter++;
+//   }
+//   maxr = maxr - 1;
+//   //right wall
+//   for (let i = maxr - 1; i >= minr; i--) {
+//     result.push(arr[i][maxc - 1]);
+//     counter++;
+//   }
+//   maxc = maxc - 1;
+//   //top wall
+//   for (let j = maxc - 1; j >= minc; j--) {
+//     result.push(arr[minr][j]);
+//     counter++;
+//   }
+//   minr = minr + 1;
+// }
 
-console.log(result.join(" "));
-console.log(performance.now());
+// console.log(result.join(" "));
+// console.log(performance.now());
 
 // Find 2nd smallest number
 
@@ -418,3 +418,31 @@ console.log(performance.now());
 //   }
 // }
 // console.log(smallest2);
+
+// Max number of anagram substring
+var str = "geeg";
+var anagramPairCount = 0;
+var obj = {};
+for (var i = 0; i < str.length; i++) {
+  for (var j = i; j < str.length; j++) {
+    var substr = str.slice(i, j + 1);
+    substr = substr
+      .split("")
+      .sort((a, b) => {
+        return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
+      })
+      .join("");
+    if (obj[substr]) {
+      obj[substr]++;
+    } else {
+      obj[substr] = 1;
+    }
+  }
+}
+
+for (var item in obj) {
+  var n = obj[item];
+  anagramPairCount += (n * (n - 1)) / 2;
+}
+
+console.log(anagramPairCount);
