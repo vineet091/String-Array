@@ -420,29 +420,51 @@ import "./styles.css";
 // console.log(smallest2);
 
 // Max number of anagram substring
-var str = "geeg";
-var anagramPairCount = 0;
-var obj = {};
+// var str = "geeg";
+// var anagramPairCount = 0;
+// var obj = {};
+// for (var i = 0; i < str.length; i++) {
+//   for (var j = i; j < str.length; j++) {
+//     var substr = str.slice(i, j + 1);
+//     substr = substr
+//       .split("")
+//       .sort((a, b) => {
+//         return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
+//       })
+//       .join("");
+//     if (obj[substr]) {
+//       obj[substr]++;
+//     } else {
+//       obj[substr] = 1;
+//     }
+//   }
+// }
+
+// for (var item in obj) {
+//   var n = obj[item];
+//   anagramPairCount += (n * (n - 1)) / 2;
+// }
+
+// console.log(anagramPairCount);
+
+// Max Substring with left hand sum = right hand sum
+var str = "1336129";
+var maxSubstring = str[0];
 for (var i = 0; i < str.length; i++) {
   for (var j = i; j < str.length; j++) {
-    var substr = str.slice(i, j + 1);
-    substr = substr
-      .split("")
-      .sort((a, b) => {
-        return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
-      })
-      .join("");
-    if (obj[substr]) {
-      obj[substr]++;
-    } else {
-      obj[substr] = 1;
+    var subStr = str.slice(i, j + 1);
+    var subStrLn = subStr.length;
+    var lhs = 0;
+    var rhs = 0;
+    if (subStrLn % 2 === 0) {
+      for (var k = 0; k < subStrLn / 2; k++) {
+        lhs += parseInt(subStr[k]);
+        rhs += parseInt(subStr[subStrLn - 1 - k]);
+        if (lhs === rhs && maxSubstring.length < subStrLn) {
+          maxSubstring = subStr;
+        }
+      }
     }
   }
 }
-
-for (var item in obj) {
-  var n = obj[item];
-  anagramPairCount += (n * (n - 1)) / 2;
-}
-
-console.log(anagramPairCount);
+console.log(maxSubstring);
