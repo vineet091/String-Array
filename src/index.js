@@ -96,7 +96,7 @@ import "./styles.css";
 
 // Check anagram
 // var str1 = "listenn";
-// var str2 = "silennt";
+// var str2 = "silnnt";
 // var objCount = {};
 // for (var i = 0; i < str1.length; i++) {
 //   if (objCount[str1[i]]) {
@@ -105,15 +105,17 @@ import "./styles.css";
 //     objCount[str1[i]] = 1;
 //   }
 // }
-// var flag = true;
 // for (var j = 0; j < str2.length; j++) {
 //   var count = objCount[str2[j]] || 0;
 //   objCount[str2[j]] = count - 1;
-//   if (objCount[str2[j]] < 0) {
+// }
+// var flag = true;
+
+// for (var item in objCount) {
+//   if (objCount[item] !== 0) {
 //     flag = false;
 //   }
 // }
-
 // console.log(flag);
 
 // sort an array
@@ -183,7 +185,7 @@ import "./styles.css";
 // var k = 0; //ar2
 // var i = 0; //ar
 // let loop = true;
-// var objExist = {};
+// var objExist = new Map();
 // while (loop) {
 //   if (ar1[j] && ar2[k]) {
 //     if (objExist[ar1[j]]) {
@@ -470,8 +472,8 @@ import "./styles.css";
 // console.log(maxSubstring);
 
 // Number of distinct pair having differnece = k
-var numbers = [1, 2];
-var k = 0;
+var numbers = [1, 1, 2, 2];
+var k = 1;
 // Write your code here
 var count = 0; // Initialize count
 
