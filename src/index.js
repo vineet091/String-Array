@@ -448,23 +448,43 @@ import "./styles.css";
 // console.log(anagramPairCount);
 
 // Max Substring with left hand sum = right hand sum
-var str = "1336129";
-var maxSubstring = str[0];
-for (var i = 0; i < str.length; i++) {
-  for (var j = i; j < str.length; j++) {
-    var subStr = str.slice(i, j + 1);
-    var subStrLn = subStr.length;
-    var lhs = 0;
-    var rhs = 0;
-    if (subStrLn % 2 === 0) {
-      for (var k = 0; k < subStrLn / 2; k++) {
-        lhs += parseInt(subStr[k]);
-        rhs += parseInt(subStr[subStrLn - 1 - k]);
-        if (lhs === rhs && maxSubstring.length < subStrLn) {
-          maxSubstring = subStr;
-        }
-      }
-    }
-  }
+// var str = "1336129";
+// var maxSubstring = str[0];
+// for (var i = 0; i < str.length; i++) {
+//   for (var j = i; j < str.length; j++) {
+//     var subStr = str.slice(i, j + 1);
+//     var subStrLn = subStr.length;
+//     var lhs = 0;
+//     var rhs = 0;
+//     if (subStrLn % 2 === 0) {
+//       for (var k = 0; k < subStrLn / 2; k++) {
+//         lhs += parseInt(subStr[k]);
+//         rhs += parseInt(subStr[subStrLn - 1 - k]);
+//         if (lhs === rhs && maxSubstring.length < subStrLn) {
+//           maxSubstring = subStr;
+//         }
+//       }
+//     }
+//   }
+// }
+// console.log(maxSubstring);
+
+// Number of distinct pair having differnece = k
+var numbers = [1, 2];
+var k = 0;
+// Write your code here
+var count = 0; // Initialize count
+
+// Initialize empty hashmap.
+var hashmap = new Map();
+
+// Insert array elements to hashmap
+for (var i = 0; i < numbers.length; i++) hashmap[numbers[i]] = true;
+
+for (var j = 0; j < numbers.length; j++) {
+  var x = numbers[j];
+  if (hashmap[x + k]) count++;
+  hashmap[x + k] = false;
 }
-console.log(maxSubstring);
+
+console.log("counts", count, hashmap);
