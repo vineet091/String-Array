@@ -38,6 +38,20 @@ import "./styles.css";
 // }
 // console.log(substrLn, substr);
 
+// Max substring with unique characters in O(n)
+var str = "gksforeegkd";
+var substrLn = 0;
+var substr = "";
+var lastIndex = {};
+var i = 0;
+for (var j = i; j < str.length; j++) {
+  i = Math.max(i, lastIndex[str[j]] ? lastIndex[str[j]] + 1 : 0);
+  substrLn = Math.max(substrLn, j - i + 1);
+  substr = substrLn > j - i + 1 ? substr : str.slice(i, i + substrLn);
+  lastIndex[str[j]] = j;
+}
+console.log(substr, lastIndex);
+
 // Max pallindrome substring
 // var str = "geviniveraard";
 // var substrLn = 1;
@@ -472,21 +486,21 @@ import "./styles.css";
 // console.log(maxSubstring);
 
 // Number of distinct pair having differnece = k
-var numbers = [1, 1, 2, 2];
-var k = 1;
-// Write your code here
-var count = 0; // Initialize count
+// var numbers = [1, 1, 2, 2];
+// var k = 1;
+// // Write your code here
+// var count = 0; // Initialize count
 
-// Initialize empty hashmap.
-var hashmap = new Map();
+// // Initialize empty hashmap.
+// var hashmap = new Map();
 
-// Insert array elements to hashmap
-for (var i = 0; i < numbers.length; i++) hashmap[numbers[i]] = true;
+// // Insert array elements to hashmap
+// for (var i = 0; i < numbers.length; i++) hashmap[numbers[i]] = true;
 
-for (var j = 0; j < numbers.length; j++) {
-  var x = numbers[j];
-  if (hashmap[x + k]) count++;
-  hashmap[x + k] = false;
-}
+// for (var j = 0; j < numbers.length; j++) {
+//   var x = numbers[j];
+//   if (hashmap[x + k]) count++;
+//   hashmap[x + k] = false;
+// }
 
-console.log("counts", count, hashmap);
+// console.log("counts", count, hashmap);
