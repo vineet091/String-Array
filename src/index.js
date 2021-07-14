@@ -564,3 +564,34 @@ console.log(maxSubsLn);
 // }
 
 // console.log("counts", count, hashmap);
+
+// max substantial substring between 2 strings
+function compare(str1, str2) {
+  var maxSubsLn = 0;
+  var subString = "";
+  for (var i = 0; i < str2.length; i++) {
+    var count = 0;
+    var newChars = "";
+    var k = 0;
+    var l = i;
+    while (k < str1.length && l < str2.length) {
+      if (str1[k] === str2[l]) {
+        count++;
+        newChars += str2[l];
+        k++;
+        l++;
+      } else {
+        k++;
+      }
+    }
+    if (maxSubsLn < count) {
+      subString = newChars;
+    }
+    maxSubsLn = Math.max(maxSubsLn, count);
+  }
+  console.log(subString, maxSubsLn);
+  return maxSubsLn;
+}
+
+var count = compare("actgattag", "gtgtgatcg");
+console.log(count);
