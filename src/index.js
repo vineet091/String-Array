@@ -52,66 +52,6 @@ import "./styles.css";
 // }
 // console.log(substr, lastIndex);
 
-//Max count of subsequential substring between two string
-var str1 = "abdefabdc";
-var str2 = "bcdabedc";
-var maxSubsLn = 0;
-var subString = "";
-for (var i = 0; i < str2.length; i++) {
-  var count = 0;
-  var newChars = "";
-  var k = 0;
-  var l = i;
-  while (k < str1.length && l < str2.length) {
-    if (str1[k] === str2[l]) {
-      count++;
-      newChars += str2[l];
-      k++;
-      l++;
-    } else {
-      k++;
-    }
-  }
-  if (maxSubsLn < count) {
-    subString = newChars;
-  }
-  maxSubsLn = Math.max(maxSubsLn, count);
-}
-console.log(subString, maxSubsLn);
-
-// 2nd method Max count of subsequential substring between two string
-var str1 = "abdefabdc";
-var str2 = "bcdabedc";
-var maxSubsLn = 0;
-var MAX = 100;
-var dp = Array.from(Array(MAX), () => Array(MAX));
-
-// Initialize the dp[][] to 0.
-for (var i = 0; i <= str2.length; i++) {
-  for (var j = 0; j <= str1.length; j++) {
-    dp[i][j] = 0;
-  }
-}
-
-// Calculating value for each element.
-for (var i = 1; i <= str2.length; i++) {
-  for (var j = 1; j <= str1.length; j++) {
-    // If alphabet of string X and Y are
-    // equal make dp[i][j] = 1 + dp[i-1][j-1]
-    if (str1[j - 1] === str2[i - 1]) {
-      dp[i][j] = 1 + dp[i - 1][j - 1];
-    }
-    // Else copy the previous value in the
-    // row i.e dp[i-1][j-1]
-    else dp[i][j] = dp[i][j - 1];
-  }
-}
-// Finding the maximum length.
-for (var i = 1; i <= str2.length; i++) {
-  maxSubsLn = Math.max(maxSubsLn, dp[i][str1.length]);
-}
-console.log(maxSubsLn);
-
 // Max pallindrome substring
 // var str = "geviniveraard";
 // var substrLn = 1;
@@ -565,7 +505,7 @@ console.log(maxSubsLn);
 
 // console.log("counts", count, hashmap);
 
-// max substantial substring between 2 strings
+// max subsequent substring between 2 strings
 function compare(str1, str2) {
   var maxSubsLn = 0;
   var subString = "";
@@ -595,3 +535,36 @@ function compare(str1, str2) {
 
 var count = compare("actgattag", "gtgtgatcg");
 console.log(count);
+
+// 2nd method Max count of subsequential substring between two string
+var str1 = "actgattag";
+var str2 = "gtgtgatcg";
+var maxSubsLn = 0;
+var MAX = 10;
+var dp = Array.from(Array(MAX), () => Array(MAX));
+
+// Initialize the dp[][] to 0.
+for (var i = 0; i <= str1.length; i++) {
+  for (var j = 0; j <= str2.length; j++) {
+    dp[i][j] = 0;
+  }
+}
+
+// Calculating value for each element.
+for (var i = 1; i <= str1.length; i++) {
+  for (var j = 1; j <= str2.length; j++) {
+    // If alphabet of string X and Y are
+    // equal make dp[i][j] = 1 + dp[i-1][j-1]
+    if (str1[j - 1] === str2[i - 1]) {
+      dp[i][j] = 1 + dp[i - 1][j - 1];
+    }
+    // Else copy the previous value in the
+    // row i.e dp[i-1][j-1]
+    else dp[i][j] = dp[i][j - 1];
+  }
+}
+// Finding the maximum length.
+for (var k = 1; k <= str1.length; k++) {
+  maxSubsLn = Math.max(maxSubsLn, dp[k][str2.length]);
+}
+console.log(maxSubsLn, dp);
