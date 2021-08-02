@@ -506,65 +506,80 @@ import "./styles.css";
 // console.log("counts", count, hashmap);
 
 // max subsequent substring between 2 strings
-function compare(str1, str2) {
-  var maxSubsLn = 0;
-  var subString = "";
-  for (var i = 0; i < str2.length; i++) {
-    var count = 0;
-    var newChars = "";
-    var k = 0;
-    var l = i;
-    while (k < str1.length && l < str2.length) {
-      if (str1[k] === str2[l]) {
-        count++;
-        newChars += str2[l];
-        k++;
-        l++;
-      } else {
-        k++;
-      }
-    }
-    if (maxSubsLn < count) {
-      subString = newChars;
-    }
-    maxSubsLn = Math.max(maxSubsLn, count);
-  }
-  console.log(subString, maxSubsLn);
-  return maxSubsLn;
-}
+// function compare(str1, str2) {
+//   var maxSubsLn = 0;
+//   var subString = "";
+//   for (var i = 0; i < str2.length; i++) {
+//     var count = 0;
+//     var newChars = "";
+//     var k = 0;
+//     var l = i;
+//     while (k < str1.length && l < str2.length) {
+//       if (str1[k] === str2[l]) {
+//         count++;
+//         newChars += str2[l];
+//         k++;
+//         l++;
+//       } else {
+//         k++;
+//       }
+//     }
+//     if (maxSubsLn < count) {
+//       subString = newChars;
+//     }
+//     maxSubsLn = Math.max(maxSubsLn, count);
+//   }
+//   console.log(subString, maxSubsLn);
+//   return maxSubsLn;
+// }
 
-var count = compare("actgattag", "gtgtgatcg");
-console.log(count);
+// var count = compare("actgattag", "gtgtgatcg");
+// console.log(count);
 
 // 2nd method Max count of subsequential substring between two string
-var str1 = "actgattag";
-var str2 = "gtgtgatcg";
-var maxSubsLn = 0;
-var MAX = 10;
-var dp = Array.from(Array(MAX), () => Array(MAX));
+// var str1 = "actgattag";
+// var str2 = "gtgtgatcg";
+// var maxSubsLn = 0;
+// var MAX = 10;
+// var dp = Array.from(Array(MAX), () => Array(MAX));
 
-// Initialize the dp[][] to 0.
-for (var i = 0; i <= str1.length; i++) {
-  for (var j = 0; j <= str2.length; j++) {
-    dp[i][j] = 0;
-  }
-}
+// // Initialize the dp[][] to 0.
+// for (var i = 0; i <= str1.length; i++) {
+//   for (var j = 0; j <= str2.length; j++) {
+//     dp[i][j] = 0;
+//   }
+// }
 
 // Calculating value for each element.
-for (var i = 1; i <= str1.length; i++) {
-  for (var j = 1; j <= str2.length; j++) {
-    // If alphabet of string X and Y are
-    // equal make dp[i][j] = 1 + dp[i-1][j-1]
-    if (str1[j - 1] === str2[i - 1]) {
-      dp[i][j] = 1 + dp[i - 1][j - 1];
-    }
-    // Else copy the previous value in the
-    // row i.e dp[i-1][j-1]
-    else dp[i][j] = dp[i][j - 1];
+// for (var i = 1; i <= str1.length; i++) {
+//   for (var j = 1; j <= str2.length; j++) {
+//     // If alphabet of string X and Y are
+//     // equal make dp[i][j] = 1 + dp[i-1][j-1]
+//     if (str1[j - 1] === str2[i - 1]) {
+//       dp[i][j] = 1 + dp[i - 1][j - 1];
+//     }
+//     // Else copy the previous value in the
+//     // row i.e dp[i-1][j-1]
+//     else dp[i][j] = dp[i][j - 1];
+//   }
+// }
+// // Finding the maximum length.
+// for (var k = 1; k <= str1.length; k++) {
+//   maxSubsLn = Math.max(maxSubsLn, dp[k][str2.length]);
+// }
+// console.log(maxSubsLn, dp);
+
+// rearange array such that
+// a < b > c < d > e < f > g;
+
+function reaarange(arr) {
+  var ar = arr.sort();
+
+  for (var j = 1; j < arr.length - 1; j += 2) {
+    var sw = ar[j];
+    ar[j] = ar[j + 1];
+    ar[j + 1] = sw;
   }
+  console.log(ar);
 }
-// Finding the maximum length.
-for (var k = 1; k <= str1.length; k++) {
-  maxSubsLn = Math.max(maxSubsLn, dp[k][str2.length]);
-}
-console.log(maxSubsLn, dp);
+reaarange([4, 3, 7, 8, 6, 2, 1]);
