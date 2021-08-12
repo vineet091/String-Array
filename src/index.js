@@ -572,14 +572,41 @@ import "./styles.css";
 // rearange array such that
 // a < b > c < d > e < f > g;
 
-function reaarange(arr) {
-  var ar = arr.sort();
+// function reaarange(arr) {
+//   var ar = arr.sort();
 
-  for (var j = 1; j < arr.length - 1; j += 2) {
-    var sw = ar[j];
-    ar[j] = ar[j + 1];
-    ar[j + 1] = sw;
-  }
-  console.log(ar);
+//   for (var j = 1; j < arr.length - 1; j += 2) {
+//     var sw = ar[j];
+//     ar[j] = ar[j + 1];
+//     ar[j + 1] = sw;
+//   }
+//   console.log(ar);
+// }
+// reaarange([4, 3, 7, 8, 6, 2, 1]);
+
+// Priorty Queue
+function myPriortyQueue() {
+  var list = [];
+
+  this.enque = function (obj) {
+    var listLn = list.length;
+    if (!listLn) {
+      list.push(obj);
+      return;
+    }
+
+    for (var i = 0; i < listLn; i++) {
+      if (list[i].priorty > obj.priority) {
+        list.splice(i, 0, obj);
+        return;
+      }
+    }
+  };
+
+  this.deque = function () {
+    if (!list.length) {
+      return;
+    }
+    list.shift();
+  };
 }
-reaarange([4, 3, 7, 8, 6, 2, 1]);
