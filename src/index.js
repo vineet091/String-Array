@@ -585,28 +585,106 @@ import "./styles.css";
 // reaarange([4, 3, 7, 8, 6, 2, 1]);
 
 // Priorty Queue
-function myPriortyQueue() {
-  var list = [];
+// function myPriortyQueue() {
+//   var list = [];
 
-  this.enque = function (obj) {
-    var listLn = list.length;
-    if (!listLn) {
-      list.push(obj);
-      return;
+//   this.enque = function (obj) {
+//     var listLn = list.length;
+//     if (!listLn) {
+//       list.push(obj);
+//       return;
+//     }
+
+//     for (var i = 0; i < listLn; i++) {
+//       if (list[i].priorty > obj.priority) {
+//         list.splice(i, 0, obj);
+//         return;
+//       }
+//     }
+//   };
+
+//   this.deque = function () {
+//     if (!list.length) {
+//       return;
+//     }
+//     list.shift();
+//   };
+// }
+
+// Check for valid Parenthesis
+// var parenthesisMap = {
+//   "]": "[",
+//   ")": "(",
+//   "}": "{"
+// };
+// var parenthesisSet = ["[", "]", "{", "}", "(", ")"];
+
+// function checkParenthesis(str) {
+//   var parenthesisArray = [];
+//   for (var i = 0; i < str.length; i++) {
+//     if (parenthesisSet.indexOf(str[i]) > -1) {
+//       if (
+//         parenthesisMap[str[i]] &&
+//         parenthesisMap[str[i]] === parenthesisArray[parenthesisArray.length - 1]
+//       ) {
+//         parenthesisArray.pop();
+//       } else {
+//         parenthesisArray.push(str[i]);
+//         console.log(parenthesisArray);
+//       }
+//     }
+//   }
+
+//   return parenthesisArray.length ? false : true;
+// }
+
+// console.log(checkParenthesis("[A+(C*D)]"));
+
+// Consider the following series:
+// A := 1
+// B := A*2 + 2
+// C := B*2 + 3
+// D := C*2 +4and so on...
+
+// "ABC"  1+4+11 == 16
+//1, 4, 11, 16
+//Write a program that:
+
+// outputs the number corresponding to a given letter and sum of count
+
+// ex: "GREP"
+
+function memorize() {
+  var res = {};
+  var ab = function (chr) {
+    if (res[chr]) {
+      return res[chr];
     }
-
-    for (var i = 0; i < listLn; i++) {
-      if (list[i].priorty > obj.priority) {
-        list.splice(i, 0, obj);
-        return;
+    var prevCharCode = chr.charCodeAt(0) - 1;
+    if (prevCharCode >= 65) {
+      var prevChar = String.fromCharCode(prevCharCode);
+      if (res[prevChar]) {
+        return 2 * res[prevChar] + chr.charCodeAt(0) - 64;
       }
+      var prevRes = ab(prevChar);
+      var result = 2 * prevRes + chr.charCodeAt(0) - 64;
+      res[prevChar] = prevRes;
+      return result;
+    } else {
+      return 1;
     }
   };
-
-  this.deque = function () {
-    if (!list.length) {
-      return;
-    }
-    list.shift();
+  return {
+    ab: ab
   };
 }
+var memoObj = new memorize();
+function getValue(str) {
+  var sum = 0;
+  for (var i = 0; i < str.length; i++) {
+    sum += memoObj.ab(str[i]);
+  }
+  console.log(sum);
+}
+
+getValue("GREP");
