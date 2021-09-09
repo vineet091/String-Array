@@ -654,37 +654,74 @@ import "./styles.css";
 
 // ex: "GREP"
 
-function memorize() {
-  var res = {};
-  var ab = function (chr) {
-    if (res[chr]) {
-      return res[chr];
+// function memorize() {
+//   var res = {};
+//   var ab = function (chr) {
+//     if (res[chr]) {
+//       return res[chr];
+//     }
+//     var prevCharCode = chr.charCodeAt(0) - 1;
+//     if (prevCharCode >= 65) {
+//       var prevChar = String.fromCharCode(prevCharCode);
+//       if (res[prevChar]) {
+//         return 2 * res[prevChar] + chr.charCodeAt(0) - 64;
+//       }
+//       var prevRes = ab(prevChar);
+//       var result = 2 * prevRes + chr.charCodeAt(0) - 64;
+//       res[prevChar] = prevRes;
+//       return result;
+//     } else {
+//       return 1;
+//     }
+//   };
+//   return {
+//     ab: ab
+//   };
+// }
+// var memoObj = new memorize();
+// function getValue(str) {
+//   var sum = 0;
+//   for (var i = 0; i < str.length; i++) {
+//     sum += memoObj.ab(str[i]);
+//   }
+//   console.log(sum);
+// }
+
+// getValue("GREP");
+
+function calculateSum(x, y) {
+  var carry = 0;
+  var res = "";
+  var partialSum = 0;
+  var maxLn = Math.max(x.length, y.length);
+  for (var l = 0; l < maxLn; l++) {
+    if (x.length - 1 - l >= 0 && y.length - 1 - l >= 0) {
+      partialSum =
+        parseInt(x[x.length - 1 - l]) + parseInt(y[y.length - 1 - l]);
+    } else if (x.length - 1 - l >= 0) {
+      partialSum = parseInt(x[x.length - 1 - l]);
+    } else if (y.length - 1 - l >= 0) {
+      partialSum = parseInt(y[y.length - 1 - l]);
     }
-    var prevCharCode = chr.charCodeAt(0) - 1;
-    if (prevCharCode >= 65) {
-      var prevChar = String.fromCharCode(prevCharCode);
-      if (res[prevChar]) {
-        return 2 * res[prevChar] + chr.charCodeAt(0) - 64;
-      }
-      var prevRes = ab(prevChar);
-      var result = 2 * prevRes + chr.charCodeAt(0) - 64;
-      res[prevChar] = prevRes;
-      return result;
+    if (carry) {
+      partialSum += carry;
+    }
+    if (partialSum > 9) {
+      carry = parseInt(partialSum / 10, 10);
+      partialSum = partialSum % 10;
     } else {
-      return 1;
+      carry = 0;
     }
-  };
-  return {
-    ab: ab
-  };
-}
-var memoObj = new memorize();
-function getValue(str) {
-  var sum = 0;
-  for (var i = 0; i < str.length; i++) {
-    sum += memoObj.ab(str[i]);
+    res = partialSum.toString() + res;
   }
-  console.log(sum);
+  if (carry) {
+    res = carry + res;
+  }
+  return res;
 }
 
-getValue("GREP");
+console.log(calculateSum("0", "0"));
+console.log(calculateSum("25", "19"));
+console.log(calculateSum("84", "17"));
+console.log(calculateSum("649", "54"));
+console.log(calculateSum("649555", "5"));
