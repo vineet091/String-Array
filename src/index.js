@@ -725,3 +725,30 @@ console.log(calculateSum("25", "19"));
 console.log(calculateSum("84", "17"));
 console.log(calculateSum("649", "54"));
 console.log(calculateSum("649555", "5"));
+
+
+// Get Mean of array 
+const arr = [2, 3, 4, 6, 8, 10]; // [2.5, 3.5, 5, 7, 9]
+const size = 5;
+
+function getAverages(arr, size) {
+  var res = [];
+   var counter = 0;
+   var sum = 0;
+    var i = -1;
+    while(i< arr.length) {
+      if(counter === size) {
+       res.push(sum/size); 
+        counter = 0;
+        sum =0;
+        i=res.length;
+      } else {
+        i++
+      }
+      sum += arr[i];
+      counter++;
+   } 
+  return res;
+}
+
+console.log(getAverages(arr, size));
