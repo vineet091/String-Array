@@ -21,22 +21,22 @@ import "./styles.css";
 // console.log(max_product);
 
 // Max substring with unique characters
-// var str = "gksforeegkd";
-// var substrLn = 1;
-// var substr = "";
-// for (var i = 0; i < str.length; i++) {
-//   var obj = {};
-//   for (var j = i; j < str.length; j++) {
-//     if (obj[str[j]]) {
-//       break;
-//     } else {
-//       obj[str[j]] = true;
-//       substrLn = Math.max(substrLn, j - i + 1);
-//       substr = substrLn > j - i + 1 ? substr : str.slice(i, i + substrLn);
-//     }
-//   }
-// }
-// console.log(substrLn, substr);
+var str = "gksforeegkd";
+var substrLn = 1;
+var substr = "";
+for (var i = 0; i < str.length; i++) {
+  var obj = {};
+  for (var j = i; j < str.length; j++) {
+    if (obj[str[j]]) {
+      break;
+    } else {
+      obj[str[j]] = true;
+      substrLn = Math.max(substrLn, j - i + 1);
+      substr = substrLn > j - i + 1 ? substr : str.slice(i, i + substrLn);
+    }
+  }
+}
+console.log(substrLn, substr);
 
 // Max substring with unique characters in O(n)
 // var str = "gksforeegkd";
@@ -726,29 +726,32 @@ console.log(calculateSum("84", "17"));
 console.log(calculateSum("649", "54"));
 console.log(calculateSum("649555", "5"));
 
-
-// Get Mean of array 
+// Get Mean of array
 const arr = [2, 3, 4, 6, 8, 10]; // [2.5, 3.5, 5, 7, 9]
 const size = 5;
 
 function getAverages(arr, size) {
   var res = [];
-   var counter = 0;
-   var sum = 0;
-    var i = -1;
-    while(i< arr.length) {
-      if(counter === size) {
-       res.push(sum/size); 
-        counter = 0;
-        sum =0;
-        i=res.length;
-      } else {
-        i++
-      }
-      sum += arr[i];
-      counter++;
-   } 
+  var counter = 0;
+  var sum = 0;
+  var i = -1;
+  while (i < arr.length) {
+    if (counter === size) {
+      res.push(sum / size);
+      counter = 0;
+      sum = 0;
+      i = res.length;
+    } else {
+      i++;
+    }
+    sum += arr[i];
+    counter++;
+  }
   return res;
 }
 
 console.log(getAverages(arr, size));
+
+
+https://learnersbucket.com/examples/algorithms/trapping-rain-water-in-javascript/
+10010 -> one thousand and ten
