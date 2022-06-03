@@ -585,31 +585,31 @@ console.log(substrLn, substr);
 // reaarange([4, 3, 7, 8, 6, 2, 1]);
 
 // Priorty Queue
-// function myPriortyQueue() {
-//   var list = [];
+function myPriortyQueue() {
+  var list = [];
 
-//   this.enque = function (obj) {
-//     var listLn = list.length;
-//     if (!listLn) {
-//       list.push(obj);
-//       return;
-//     }
+  this.enque = function (obj) {
+    var listLn = list.length;
+    if (!listLn) {
+      list.push(obj);
+      return;
+    }
 
-//     for (var i = 0; i < listLn; i++) {
-//       if (list[i].priorty > obj.priority) {
-//         list.splice(i, 0, obj);
-//         return;
-//       }
-//     }
-//   };
+    for (var i = 0; i < listLn; i++) {
+      if (list[i].priorty < obj.priority) {
+        list.splice(i, 0, obj);
+        return;
+      }
+    }
+  };
 
-//   this.deque = function () {
-//     if (!list.length) {
-//       return;
-//     }
-//     list.shift();
-//   };
-// }
+  this.deque = function () {
+    if (!list.length) {
+      return;
+    }
+    list.shift();
+  };
+}
 
 // Check for valid Parenthesis
 // var parenthesisMap = {
@@ -724,7 +724,7 @@ console.log(calculateSum("0", "0"));
 console.log(calculateSum("25", "19"));
 console.log(calculateSum("84", "17"));
 console.log(calculateSum("649", "54"));
-console.log(calculateSum("649555", "5"));
+console.log(calculateSum("649555", "45"));
 
 // Get Mean of array
 const arr = [2, 3, 4, 6, 8, 10]; // [2.5, 3.5, 5, 7, 9]
@@ -752,6 +752,28 @@ function getAverages(arr, size) {
 
 console.log(getAverages(arr, size));
 
+// https://learnersbucket.com/examples/algorithms/trapping-rain-water-in-javascript/
+// 10010 -> one thousand and ten
 
-https://learnersbucket.com/examples/algorithms/trapping-rain-water-in-javascript/
-10010 -> one thousand and ten
+var height1 = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
+function waterTrap(height) {
+  var water = 0;
+  var leftMax = -1;
+  var rightMax = -1;
+  var left = 0;
+  var right = height.length - 1;
+
+  while (left < right) {
+    leftMax = Math.max(height[left], leftMax);
+    rightMax = Math.max(height[right], rightMax);
+    if (leftMax > rightMax) {
+      water += rightMax - height[right];
+      right--;
+    } else {
+      water += leftMax - height[left];
+      left++;
+    }
+  }
+  return water;
+}
+console.log(waterTrap(height1));
