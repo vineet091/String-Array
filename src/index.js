@@ -777,3 +777,48 @@ function waterTrap(height) {
   return water;
 }
 console.log(waterTrap(height1));
+
+//traversing obj
+const obj = {
+  one: 1,
+  two: {
+    three: 3
+  },
+  four: {
+    five: 5,
+    six: {
+      seven: 7
+    },
+    eight: 8
+  },
+  nine: 9
+};
+
+function traveseObj(parent, obj, newKey) {
+  // {three: 3}
+  if (obj) {
+    for (var key in obj) {
+      var nkey = newKey ? `${newKey}.${key}` : key;
+      var value;
+      if (typeof obj[key] === "object") {
+        value = traveseObj(parent, obj[key], nkey);
+      } else {
+        value = obj[key];
+        parent[nkey] = value;
+      }
+    }
+  }
+
+  return parent;
+}
+
+console.log(traveseObj({}, obj, ""));
+
+const output = {
+  one: 1,
+  "two.three": 3,
+  "four.five": 5,
+  "four.six.seven": 7,
+  "four.eight": 8,
+  nine: 9
+};
