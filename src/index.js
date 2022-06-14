@@ -822,3 +822,38 @@ const output = {
   "four.eight": 8,
   nine: 9
 };
+
+//No. of permutation and combination
+var str = "abcd";
+
+function getPermutation(str1, obj = {}) {
+  var res = [];
+
+  for (var j = 0; j < str1.length; j++) {
+    var currChar = str1[j];
+    if (!obj[currChar]) {
+      obj[currChar] = true;
+      res.push(currChar);
+    }
+    var substr = currChar;
+    var substr1 = currChar;
+    for (var k = 0; k < str1.length; k++) {
+      if (k !== j) substr += str1[k];
+      if (str1.length - 1 - k !== j) {
+        substr1 += str1[str1.length - 1 - k];
+      }
+      if (!obj[substr]) {
+        obj[substr] = true;
+        res.push(substr);
+      }
+      if (!obj[substr1]) {
+        obj[substr1] = true;
+        res.push(substr1);
+      }
+    }
+    const remainder = str1.slice(0, j) + str1.slice(j + 1, str1.length);
+    res = res.concat(getPermutation(remainder, obj));
+  }
+
+  return res;
+}
