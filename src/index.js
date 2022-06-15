@@ -824,7 +824,7 @@ const output = {
 };
 
 //No. of permutation and combination
-var str = "abcd";
+var str1 = "abcd";
 
 function getPermutation(str1, obj = {}) {
   var res = [];
@@ -876,3 +876,86 @@ const stringPermutations = (str) => {
 };
 
 console.log(stringPermutations("abc"));
+
+// const arr = [1,2,3,4,5, 3,3,3,3, 2,4, 6,0, -1,7]
+// const sum = 6;
+// var map1 = {
+//     1: 1,
+//     5: 1,
+//     3: 5,
+// }
+// function getpair1(){
+//       var map1 = {}
+//     for(var i=0;i< arr.length;i++) {
+//           if(map1[arr[i]]) {
+//               map1[arr[i]]++;
+//           } else {
+//               map1[arr[i]] = 1;
+//           }
+//     }
+
+// }
+
+// // [[1,5],[2,4],[3,3],[3,3]]
+
+// // function getPairs(arr1, sum1) {
+// //     var result = [];
+// //     var indexCovered = {};
+// //         for(var i=0;i< arr1.length -1;i++) {
+// //         var initValue = arr1[i];
+// //         for(var j=i+1;j< arr1.length/2;j++) {
+// //             if(arr1[j] + initValue === sum1 && !indexCovered[i]  && !indexCovered[j]) {
+// //                 var pair = [initValue, arr1[j]];
+// //                 result.push(pair);
+// //                 indexCovered[i] = true;
+// //                 indexCovered[j] = true;
+// //             }
+// //              if(arr1[arr1.length -1 - j] + initValue === sum1 && !indexCovered[i]  && !indexCovered[arr1.length -1 - j]) {
+// //                 var pair = [initValue, arr1[arr1.length -1 - j]];
+// //                 result.push(pair);
+// //                 indexCovered[i] = true;
+// //                 indexCovered[arr1.length -1 - j] = true;
+// //             }
+// //         }
+// //     }
+
+// //     return result;
+
+// // }
+
+// console.log(getPairs(arr, sum));
+
+const arr1 = ["aab", "aba", "abc", "cb", "cba"];
+// [false,true, false, false, true]
+
+function getAnagram(arr) {
+  var result = [];
+  result.push(false);
+  for (var i = 1; i < arr.length; i++) {
+    var currStr = arr[i];
+    var sortStr = currStr
+      .split("")
+      .sort((a, b) => {
+        return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
+      })
+      .join("");
+    for (var j = 0; j < i; j++) {
+      var ismatched = false;
+      var compareTo = arr[j];
+      var sortStr2 = compareTo
+        .split("")
+        .sort((a, b) => {
+          return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
+        })
+        .join("");
+      if (sortStr === sortStr2) {
+        ismatched = true;
+        break;
+      }
+    }
+    result.push(ismatched);
+  }
+  return result;
+}
+
+console.log(getAnagram(arr1));
