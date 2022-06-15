@@ -779,7 +779,7 @@ function waterTrap(height) {
 console.log(waterTrap(height1));
 
 //traversing obj
-const obj = {
+const obj1 = {
   one: 1,
   two: {
     three: 3
@@ -812,7 +812,7 @@ function traveseObj(parent, obj, newKey) {
   return parent;
 }
 
-console.log(traveseObj({}, obj, ""));
+console.log(traveseObj({}, obj1, ""));
 
 const output = {
   one: 1,
@@ -857,3 +857,22 @@ function getPermutation(str1, obj = {}) {
 
   return res;
 }
+
+console.log(getPermutation(str));
+
+const stringPermutations = (str) => {
+  if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+  return str
+    .split("")
+    .reduce(
+      (acc, letter, i) =>
+        acc.concat(
+          stringPermutations(str.slice(0, i) + str.slice(i + 1)).map(
+            (val) => letter + val
+          )
+        ),
+      []
+    );
+};
+
+console.log(stringPermutations("abc"));
