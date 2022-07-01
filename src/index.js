@@ -959,3 +959,31 @@ function getAnagram(arr) {
 }
 
 console.log(getAnagram(arr1));
+
+const obj1 = {
+  a: {
+    b: {
+      b1: "test",
+      b2: "test2"
+    },
+    c: {
+      ac: {
+        acc: 42
+      }
+    }
+  }
+};
+
+const res = { a_b_b1: "test", a_b_b2: "test2", a_b_c_ac_acc: 42 };
+function convert(obj, key = "", res = {}) {
+  for (var key1 in obj) {
+    //a
+    var prop1 = key ? key + `_${key1}` : key1;
+    if (typeof obj[key1] === "object") {
+      convert(obj[key1], prop1, res);
+    } else {
+      res[prop1] = obj[key1];
+    }
+  }
+  return res;
+}
