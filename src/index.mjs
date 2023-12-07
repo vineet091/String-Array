@@ -1,4 +1,4 @@
-import './style.css';
+import "./styles.css";
 
 // Input: s = "101023"
 // Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
@@ -37,13 +37,13 @@ function findValidIPs(str, currentIP, index = 0) {
       } else {
         var remStr = str.slice(ip.length, str.length);
         const nextIndex = index + 1;
-        findValidIPs(remStr, currentIP + ip + '.', nextIndex);
+        findValidIPs(remStr, currentIP + ip + ".", nextIndex);
       }
     }
   }
 }
-findValidIPs('101023', '', 0);
-console.log('outputArray', outputIpArray);
+findValidIPs("101023", "", 0);
+console.log("outputArray", outputIpArray);
 
 // Max Sum in Array
 // var a = [-2, -3, 4, -1, -2, 1, 5, -3];
@@ -66,9 +66,9 @@ console.log('outputArray', outputIpArray);
 // console.log(max_product);
 
 // Max substring with unique characters
-var str = 'gksforeegkd';
+var str = "gksforeegkd";
 var substrLn = 1;
-var substr = '';
+var substr = "";
 for (var i = 0; i < str.length; i++) {
   var obj = {};
   for (var j = i; j < str.length; j++) {
@@ -736,7 +736,7 @@ function myPriortyQueue() {
 
 function calculateSum(x, y) {
   var carry = 0;
-  var res = '';
+  var res = "";
   var partialSum = 0;
   var maxLn = Math.max(x.length, y.length);
   for (var l = 0; l < maxLn; l++) {
@@ -765,11 +765,11 @@ function calculateSum(x, y) {
   return res;
 }
 
-console.log(calculateSum('0', '0'));
-console.log(calculateSum('25', '19'));
-console.log(calculateSum('84', '17'));
-console.log(calculateSum('649', '54'));
-console.log(calculateSum('649555', '45'));
+console.log(calculateSum("0", "0"));
+console.log(calculateSum("25", "19"));
+console.log(calculateSum("84", "17"));
+console.log(calculateSum("649", "54"));
+console.log(calculateSum("649555", "45"));
 
 // Get Mean of array
 const arr = [2, 3, 4, 6, 8, 10]; // [2.5, 3.5, 5, 7, 9]
@@ -845,7 +845,7 @@ function traveseObj(parent, obj, newKey) {
     for (var key in obj) {
       var nkey = newKey ? `${newKey}.${key}` : key;
       var value;
-      if (typeof obj[key] === 'object') {
+      if (typeof obj[key] === "object") {
         traveseObj(parent, obj[key], nkey);
       } else {
         parent[nkey] = value;
@@ -856,19 +856,19 @@ function traveseObj(parent, obj, newKey) {
   return parent;
 }
 
-console.log(traveseObj({}, obj1, ''));
+console.log(traveseObj({}, obj1, ""));
 
 const output = {
   one: 1,
-  'two.three': 3,
-  'four.five': 5,
-  'four.six.seven': 7,
-  'four.eight': 8,
+  "two.three": 3,
+  "four.five": 5,
+  "four.six.seven": 7,
+  "four.eight": 8,
   nine: 9,
 };
 
 //No. of permutation and combination
-var str1 = 'abcd';
+var str1 = "abcd";
 
 function getPermutation(str1, obj = {}) {
   var res = [];
@@ -907,19 +907,19 @@ console.log(getPermutation(str));
 const stringPermutations = (str) => {
   if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
   return str
-    .split('')
+    .split("")
     .reduce(
       (acc, letter, i) =>
         acc.concat(
           stringPermutations(str.slice(0, i) + str.slice(i + 1)).map(
-            (val) => letter + val
-          )
+            (val) => letter + val,
+          ),
         ),
-      []
+      [],
     );
 };
 
-console.log(stringPermutations('abc'));
+console.log(stringPermutations("abc"));
 
 function fibnacciSeries(num) {
   if (num <= 1) {
@@ -930,7 +930,7 @@ function fibnacciSeries(num) {
   }
   return s;
 }
-console.log('fibnacciSeries', fibnacciSeries(5));
+console.log("fibnacciSeries", fibnacciSeries(5));
 
 // const arr = [1,2,3,4,5, 3,3,3,3, 2,4, 6,0, -1,7]
 // const sum = 6;
@@ -1044,10 +1044,10 @@ console.log('fibnacciSeries', fibnacciSeries(5));
 // }
 
 let numbers = [
-  [1, 'x', 'x'],
-  ['x', 'x', 'x'],
-  [3, 's', 'x'],
-  [4, 'x', 'x'],
+  [1, "x", "x"],
+  ["x", "x", "x"],
+  [3, "s", "x"],
+  [4, "x", "x"],
 ];
 
 // Rows: [1] Cols:[2]
@@ -1061,10 +1061,10 @@ function checkX(arr) {
     var isRow = true;
     var arr2 = arr[i];
     for (var j = 0; j < arr2.length; j++) {
-      if (arr2[j] === 'x' && (i === 0 || lastCol[j])) {
+      if (arr2[j] === "x" && (i === 0 || lastCol[j])) {
         lastCol[j] = true;
       } else {
-        if (arr2[j] !== 'x') {
+        if (arr2[j] !== "x") {
           isRow = false;
         }
         lastCol[j] = false;
@@ -1154,12 +1154,12 @@ function findPermutation(str) {
     let char = str[i];
     let remainingStr = str.slice(0, i) + str.slice(i + 1, str.length);
     const subAStrPermutaion = [...findPermutation(remainingStr)];
-    console.log(subAStrPermutaion, 'subAStrPermutaion');
+    console.log(subAStrPermutaion, "subAStrPermutaion");
     for (let str1 of findPermutation(remainingStr)) {
-      console.log('str1', str1);
+      console.log("str1", str1);
       permutaionArray.push(char + str1);
     }
   }
   return permutaionArray;
 }
-console.log('permu', findPermutation('aabc'));
+console.log("permu", findPermutation("aabc"));
