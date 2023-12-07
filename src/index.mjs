@@ -1153,10 +1153,10 @@ function findPermutation(str) {
     let char = str[i];
     let remainingStr = str.slice(0, i) + str.slice(i + 1, str.length);
     for (let str1 of findPermutation(remainingStr)) {
-      console.log("str1", str1);
       permutaionArray.push(char + str1);
     }
   }
   return permutaionArray;
 }
 console.log("permu", findPermutation("aabc"));
+ermu", findPermutation("aabc"));
