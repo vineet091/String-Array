@@ -1350,19 +1350,22 @@ function traveseObj(parent, obj, newKey) {
         var nkey = newKey ? `${newKey}.${key}` : key;
         var value;
         if (typeof obj[key] === "object") traveseObj(parent, obj[key], nkey);
-        else parent[nkey] = value;
+        else {
+            value = obj[key];
+            parent[nkey] = value;
+        }
     }
     return parent;
 }
-console.log(traveseObj({}, obj1, ""));
-const output = {
-    one: 1,
-    "two.three": 3,
-    "four.five": 5,
-    "four.six.seven": 7,
-    "four.eight": 8,
-    nine: 9
-};
+console.log("traverse", traveseObj({}, obj1, ""));
+// const output = {
+//   one: 1,
+//   "two.three": 3,
+//   "four.five": 5,
+//   "four.six.seven": 7,
+//   "four.eight": 8,
+//   nine: 9,
+// };
 //No. of permutation and combination
 var str1 = "abcd";
 function getPermutation(str1, obj = {}) {
@@ -1392,7 +1395,7 @@ function getPermutation(str1, obj = {}) {
     }
     return res;
 }
-console.log(getPermutation(str));
+console.log("permutaion1", getPermutation(str));
 const stringPermutations = (str)=>{
     if (str.length <= 2) return str.length === 2 ? [
         str,
@@ -1402,7 +1405,7 @@ const stringPermutations = (str)=>{
     ];
     return str.split("").reduce((acc, letter, i)=>acc.concat(stringPermutations(str.slice(0, i) + str.slice(i + 1)).map((val)=>letter + val)), []);
 };
-console.log(stringPermutations("abc"));
+console.log("strprmutation1", stringPermutations("abc"));
 function fibnacciSeries(num) {
     if (num <= 1) return [
         0,
