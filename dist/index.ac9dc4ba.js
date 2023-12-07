@@ -582,26 +582,26 @@ var outputIpArray = [];
 function findValidIPs(str, currentIP, index = 0) {
     if (str) {
         if (index === 1 && str.length > 9 || index === 2 && str.length > 6 || index === 3 && str.length > 3 || index === 3 && str.length > 1 && parseInt(str[0]) === 0 || index === 3 && parseInt(str, 10) > 255) return;
-        var validIPPoints = index === 3 ? [
+        var validIPDigits = index === 3 ? [
             str
         ] : [
             str[0]
         ];
         if (index !== 3) {
-            let lastValidIP = str[0];
+            let lastValidIPDigit = str[0];
             for(var i = 1; i < 3; i++){
-                var currentValidIP = lastValidIP;
+                var currentValidIP = lastValidIPDigit;
                 if (parseInt(str[0]) !== 0 && str[i]) {
                     currentValidIP += str[i];
                     if (parseInt(currentValidIP, 10) <= 255) {
-                        validIPPoints.push(currentValidIP);
-                        lastValidIP = currentValidIP;
+                        validIPDigits.push(currentValidIP);
+                        lastValidIPDigit = currentValidIP;
                     }
                 }
             }
         }
-        for(var j = 0; j < validIPPoints.length; j++){
-            var ip = validIPPoints[j];
+        for(var j = 0; j < validIPDigits.length; j++){
+            var ip = validIPDigits[j];
             if (index === 3) outputIpArray.push(currentIP + ip);
             else {
                 var remStr = str.slice(ip.length, str.length);

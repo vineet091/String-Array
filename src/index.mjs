@@ -16,22 +16,22 @@ function findValidIPs(str, currentIP, index = 0) {
       return;
     }
 
-    var validIPPoints = index === 3 ? [str] : [str[0]];
+    var validIPDigits = index === 3 ? [str] : [str[0]];
     if (index !== 3) {
-      let lastValidIP = str[0];
+      let lastValidIPDigit = str[0];
       for (var i = 1; i < 3; i++) {
-        var currentValidIP = lastValidIP;
+        var currentValidIP = lastValidIPDigit;
         if (parseInt(str[0]) !== 0 && str[i]) {
           currentValidIP += str[i];
           if (parseInt(currentValidIP, 10) <= 255) {
-            validIPPoints.push(currentValidIP);
-            lastValidIP = currentValidIP;
+            validIPDigits.push(currentValidIP);
+            lastValidIPDigit = currentValidIP;
           }
         }
       }
     }
-    for (var j = 0; j < validIPPoints.length; j++) {
-      var ip = validIPPoints[j];
+    for (var j = 0; j < validIPDigits.length; j++) {
+      var ip = validIPDigits[j];
       if (index === 3) {
         outputIpArray.push(currentIP + ip);
       } else {
