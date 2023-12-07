@@ -1367,7 +1367,6 @@ console.log("traverse", traveseObj({}, obj1, ""));
 //   nine: 9,
 // };
 //No. of permutation and combination
-var str1 = "abcd";
 function getPermutation(str1, obj = {}) {
     var res = [];
     for(var j = 0; j < str1.length; j++){
@@ -1395,7 +1394,7 @@ function getPermutation(str1, obj = {}) {
     }
     return res;
 }
-console.log("permutaion1", getPermutation(str));
+console.log("permutaion1", getPermutation("abcd"));
 const stringPermutations = (str)=>{
     if (str.length <= 2) return str.length === 2 ? [
         str,
@@ -1622,10 +1621,6 @@ function findPermutation(str) {
     for(let i = 0; i < str.length; i++){
         let char = str[i];
         let remainingStr = str.slice(0, i) + str.slice(i + 1, str.length);
-        const subAStrPermutaion = [
-            ...findPermutation(remainingStr)
-        ];
-        console.log(subAStrPermutaion, "subAStrPermutaion");
         for (let str1 of findPermutation(remainingStr)){
             console.log("str1", str1);
             permutaionArray.push(char + str1);
