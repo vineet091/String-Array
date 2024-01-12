@@ -1218,7 +1218,8 @@ function myPriortyQueue() {
 //     if (prevCharCode >= 65) {
 //       var prevChar = String.fromCharCode(prevCharCode);
 //       if (res[prevChar]) {
-//         return 2 * res[prevChar] + chr.charCodeAt(0) - 64;
+//         res[chr] = 2 * res[prevChar] + chr.charCodeAt(0) - 64;
+//         return res[chr];
 //       }
 //       var prevRes = ab(prevChar);
 //       var result = 2 * prevRes + chr.charCodeAt(0) - 64;
@@ -1621,14 +1622,29 @@ function findPermutation(str) {
     for(let i = 0; i < str.length; i++){
         let char = str[i];
         let remainingStr = str.slice(0, i) + str.slice(i + 1, str.length);
-        for (let str1 of findPermutation(remainingStr)){
-            console.log("str1", str1);
-            permutaionArray.push(char + str1);
-        }
+        for (let str1 of findPermutation(remainingStr))permutaionArray.push(char + str1);
     }
     return permutaionArray;
 }
 console.log("permu", findPermutation("aabc"));
+// Find ways to reach matrix m*n last index
+// Can traverse only right and down
+// Ex = [[1, 2, 3]
+//       [4, 5, 6]]; total ways = 3
+// for value 1 = ways of 2 + ways of 3 to reach 6
+// for value 2 = 1(via 5) + 1(via 3)
+//for value 4 = 1(via 5)
+function findWays(matrix, currRow, currCol) {
+    if (matrix.length - 1 === currRow && matrix[0].length - 1 === currCol) return 1;
+    else {
+        let ways = 0;
+        if (currRow + 1 <= matrix.length - 1) ways += findWays(matrix, currRow + 1, currCol);
+        if (currCol + 1 <= matrix[0].length - 1) ways += findWays(matrix, currRow, currCol + 1);
+        return ways;
+    }
+}
+const matrix = Array.from(Array(3), (row, index)=>Array.from(Array(5), (col, j)=>index * 5 + j + 1));
+console.log(findWays(matrix, 0, 0));
 
 },{"./styles.css":"lW6qc"}],"lW6qc":[function() {},{}]},["iZQ9B","aR1JP"], "aR1JP", "parcelRequirebaba")
 
