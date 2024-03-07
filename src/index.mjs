@@ -1,5 +1,32 @@
 import "./styles.css";
 
+// Find the fequency count of words in a string and print them in order of occurence
+//if count is same then print fword acc to alphabatic order
+// input  - i am the big the big bul
+// output big = 2, the = 2, am = 1, bul = 1, i = 1
+var s = {
+  i: 1,
+  am: 1,
+  the: 2,
+  big: 2,
+  bul: 1,
+}; //n
+var keyArr = Object.keys(s);
+keyArr.sort((a, b) => {
+  //nlogn -sort algo which uses insertion and mergesort
+  if (s[a] === s[b]) {
+    return a.charCodeAt(0) > b.charCodeAt(0) ? 1 : -1;
+  }
+  return s[a] > s[b] ? -1 : 1;
+});
+keyArr.map((key) => {
+  // n
+  console.log(`${key} = ${s[key]}`);
+});
+
+//Space f(n) = 1(s) + n(keyArray)  =  O(n)
+//time - f(n) =n(for loop) + nlogn(sort) + n(disp) = O(nlog(n))
+
 // Input: s = "101023"
 // Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
 
