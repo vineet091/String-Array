@@ -1192,7 +1192,7 @@ console.log("permu", findPermutation("aabc"));
 // Can traverse only right and down
 // Ex = [[1, 2, 3]
 //       [4, 5, 6]]; total ways = 3
-// for value 1 = ways of 2 + ways of 3 to reach 6
+// for value 1 = ways of 2 + ways of 4 to reach 6
 // for value 2 = 1(via 5) + 1(via 3)
 //for value 4 = 1(via 5)
 
